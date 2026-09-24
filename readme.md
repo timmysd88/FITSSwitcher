@@ -1,4 +1,4 @@
-FITSSwitcher v1.12 🌌
+FITSSwitcher v1.0.2 🌌
 
 ​FITSSwitcher is a smart, automated FITS file router and organizer designed specifically for amateur astrophotographers.
 
