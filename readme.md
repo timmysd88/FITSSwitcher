@@ -1,3 +1,6 @@
+**** Note on Windows Defender: Because this is a new, indie-developed application, Windows SmartScreen may flag the installer as an "unrecognized app." This is completely normal for open-source Python tools. To install, simply click More info, and then click Run anyway.
+
+
 FITSSwitcher v1.0.2 🌌
 
 ​FITSSwitcher is a smart, automated FITS file router and organizer designed specifically for amateur astrophotographers.
