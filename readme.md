@@ -1,87 +1,58 @@
-**** Note on Windows Defender: Because this is a new, indie-developed application, Windows SmartScreen may flag the installer as an "unrecognized app." This is completely normal for open-source Python tools. To install, simply click More info, and then click Run anyway.
+# FITSSwitcher v2.85 🌌
 
+**FITSSwitcher** is an open-source, automated FITS file router, header editor, and organizer designed specifically for amateur astrophotographers. 
 
-FITSSwitcher v1.0.2 🌌
+If you use ASIAIR, N.I.N.A., or similar capture software, you know the struggle: a messy hard drive full of dumped subframes, morning flats with "Unknown" targets, and calibration files mixed in with lights. FITSSwitcher takes your raw intake directory and transforms it into a clean, structured library ready for stacking in Astro Pixel Processor (APP), Siril, or PixInsight.
 
-​FITSSwitcher is a smart, automated FITS file router and organizer designed specifically for amateur astrophotographers.
+> ⚠️ **Note on Windows Defender / SmartScreen**  
+> Because FITSSwitcher is an open-source, indie-developed application, Windows SmartScreen may flag the installer as an *"unrecognized app."* This is standard for unsigned Python executables. To install, click **More info**, then click **Run anyway**.
 
-​If you use an ASIAIR, N.I.N.A., or similar capture software, you know the struggle: a messy hard drive full of dumped FITS files, morning flat frames with missing "Unknown" targets, and calibration frames mixed in with light frames. FITSSwitcher takes your raw intake folder and perfectly organizes it into a master directory ready for stacking in Astro Pixel Processor (APP), Siril, or PixInsight.
+---
 
-​✨ Key Features
+## 🚀 What's New in v2.85
 
-​Chronological Session Mapping (S1, S2, S3): Uses a 12-hour astronomical offset so your overnight lights and morning flats automatically pair together into the exact same logical session. 
+* **Interactive Review Modal:** Preview proposed file movements, filter totals, and destination paths in an interactive window before a single file is moved.
+* **Batch FITS Header Editor:** Rename target headers or update mosaic panel designations across entire subframe sets in seconds.
+* **Granular Subfolder Controls:** Choose between full *Session + Filter* hierarchies or *Session Only* routing, with optional subfolder exclusions.
+* **Enhanced Auto-Inheritance Engine:** Smarter matching between morning flat frames and overnight light sessions.
 
-​Session Persistence: Never overwrite your historical data. FITSSwitcher scans your destination folder using smart regex and continues numbering exactly where you left off (e.g., automatically starting at S4 if S3 already exists). 
+---
 
-​Target Auto-Inheritance for Flats: Capture software often forgets to name the target for morning flats. FITSSwitcher acts as a detective, matches your "Unknown" flats to the lights taken on the same astronomical night, and automatically routes them to the correct target folder.
+## ✨ Key Features
 
-​Smart Global Calibration Routing: Route your Darks and Biases into a master global calibration library (e.g., Darks/ASI533MM/300s) while keeping your Lights and Flats neatly organized by target and session. 
+* **Chronological Session Mapping (`S1`, `S2`, `S3`):** Uses a 12-hour astronomical offset so your overnight lights and morning flats automatically group into the exact same logical session folder.
+* **Target Auto-Inheritance for Flats:** Capture software frequently labels morning flats as "Unknown." FITSSwitcher detects the session timestamp, matches flats to lights taken on the same astronomical night, and inherits the correct target name automatically.
+* **Batch Mosaic Header Editor:** Easily re-label target headers or batch-assign panel numbers (`Panel_1`, `Panel_2`) across complex multi-panel mosaic projects.
+* **Smart Global Calibration Routing:** Route Darks and Biases into a master library (`Destination/Darks/[Camera]/[Exposure]`), while keeping Lights and Flats neatly organized by target and session.
+* **Session Persistence:** Never overwrites existing data. Scans your destination folder and continues session numbering right where you left off (e.g., automatically starting at `S4` if `S3` exists).
+* **Filter Counter & Priority Sorting:** Scans your directory and tallies total exposures per target. Automatically orders filters into logical astronomical sequence (`L`, `R`, `G`, `B`, `H`, `O`, `S`).
+* **Dry Run & Undo Protection:** Test your sorting configuration with a simulated dry run. Made a mistake? Use **Undo Last Sort** to safely return files to your incoming folder.
 
-​Granular Sorting Control: Choose exactly which frame types to move. Want to just organize today's Flats without touching your master folder of Lights? Just uncheck the boxes.
+---
 
-​Filter Counter: A built-in scanning tool to tally your total valid exposures per target and frame type, automatically sorting results into standard LRGB / SHO priority.
+## 📖 How to Use FITSSwitcher
 
-​Auto-Update Checker: The app silently checks GitHub for new releases on launch and will prompt you if a newer version of FITSSwitcher is available to download.
+### Step 1: Select Your Directories
+Select your **Incoming Folder** (where your capture software dumped the subframes) and your **Destination Folder** (where your structured library lives).
 
-​📖 How to Use the FITS Sorter
+### Step 2: Choose Frame Types to Sort
+Check the frame types you want to move (Lights, Darks, Flats, Biases).
 
-​Step 1 & 2: Set Your Folders
+> 💡 **Pro Tip:** Even if you uncheck "Lights" to sort only morning flats, FITSSwitcher silently scans your lights in the background to ensure flats inherit the correct target names.
 
-​Select your Incoming FITS Folder (where your capture software dumped the files) and your Destination Folder (where you want your clean, organized library to live).
+### Step 3: Define Folder Structure & Routing
+Select your preferred folder path layout or choose a pre-built preset:
 
-​Step 3: Select Frame Types to Sort
+| Software / Workflow | Recommended Folder Layout |
+| :--- | :--- |
+| **Astro Pixel Processor (APP)** | `Target / Filter / Type` |
+| **Siril (Scripts)** | `Target / Type` |
+| **Comprehensive Mono** | `Target / Filter / Session / Type / Exposure` |
 
-​Choose exactly what you want to move using the checkboxes.
+### Step 4: Configure Global Calibration Library (Optional)
+Toggle **Route Darks/Biases to Global Library ON**. Calibration frames are camera- and exposure-dependent, not target-dependent. This sends them directly to a clean, reusable master directory:
+* **Darks:** `Destination / Darks / [Camera] / [Exposure]`
+* **Biases:** `Destination / Biases / [Camera]`
 
-​Pro Tip: Even if you uncheck "Lights" to only sort your morning Flats, FITSSwitcher will still silently scan your Lights in the background. This ensures your Flats inherit the correct target names before they are moved.
-
-​Step 4: Define Folder Structure
-
-​Use the dropdowns to build your ideal folder path, or use one of the built-in presets:
-
-​Astro Pixel Processor (APP): Target / Filter / Type 
-
-​Siril (Scripts): Target / Type 
-
-​Comprehensive Mono: Target / Filter / Session / Type / Exposure 
-
-​You can save your custom dropdown arrangement as a new preset by clicking Save Setup.
-
-​Step 5: Global Calibration Library (Highly Recommended)
-
-​Toggle Route Darks/Biases to Global Library ON.
-
-Darks and Biases are temperature and exposure-dependent, not target-dependent. This toggle ignores your custom dropdowns for these specific frames and sends them to a clean, reusable master folder:
-
-​Darks: Destination / Darks / [Camera] / [Exposure] 
-
-​Biases: Destination / Biases / [Camera] 
-
-​Step 6: Preview & Execute
-
-​Toggle Dry Run / Simulation Mode ON.
-
-​The Preview Generated Folders text box will populate with a live look at exactly what your destination directory will look like, alongside a log of any Auto-Inherited flat frames.
-
-​If everything looks perfect, turn off Dry Run and click Sort Images.
-
-​Made a mistake? Click Undo Last Sort to safely send the files right back to your incoming folder.
-
-​📊 Using the Filter Counter Tab
-
-​Shooting complex mono projects means tracking exactly how much LRGB and narrowband data you have collected.
-
-​Navigate to the Filter Counter tab.
-
-​Select your master destination folder (or any folder containing FITS files).
-
-​Click Scan & Count Filters.
-
-​The tool will parse your entire directory and provide a clean text breakdown of every valid frame, grouped by Target and Type. Filters are automatically sorted into their logical astronomical order (L, R, G, B, S, H, O) rather than alphabetically.
-
-​⚙️ Technical Details: How "Sessions" Work
-
-​Astro-imaging does not follow standard calendar dates. If you shoot the Pacman Nebula until 4:00 AM and shoot your flats at 9:00 AM, a standard calendar sort will split those files into two different days.
-
-​FITSSwitcher subtracts 12 hours from every DATE-OBS timestamp in your FITS headers. This means a 2:00 AM light frame and a 9:00 AM flat frame mathematically register as the same "astronomical night". When sorted, they are both assigned to S1, ensuring your stacking software pairs the correct calibration frames with the correct light frames effortlessly.
-
+### Step 5: Review & Execute
+1. Keep **Dry Run / Simulation Mode** enabled to generate a live preview of your
